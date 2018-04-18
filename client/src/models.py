@@ -11,6 +11,15 @@ class CardType(Enum):
 	CRUET = 3
 	COOK = 4
 
+class FuitType(Enum):
+	"""docstring for FuitType"""
+	CHEESE = 1
+	ONION = 2
+	TOMATO = 3
+	CUCUMBER = 4
+	OLIVE = 5
+	PEPPER = 6
+
 
 class Card(object):
 	"""docstring for card"""
@@ -27,16 +36,16 @@ class FuncCard(Card):
 		self.arg = arg
 		
 
-class Fruit(Card):
+class FruitCard(Card):
 	"""docstring for Fruit"""
 	ctype = CardType.Fruit
 
-	def __init__(self, arg):
+	def __init__(self, fruits):
 		super(Fruit, self).__init__()
-		self.arg = arg
+		self.fruits = fruits
 		
 
-class POT(FuncCard):
+class PotCard(FuncCard):
 	"""docstring for POT"""
 	ctype = CardType.POT
 
@@ -45,7 +54,7 @@ class POT(FuncCard):
 		self.arg = arg
 		
 
-class Cruet(FuncCard):
+class CruetCard(FuncCard):
 	"""docstring for Cruet"""
 	ctype = CardType.CRUET
 
@@ -54,11 +63,18 @@ class Cruet(FuncCard):
 		self.arg = arg
 		
 
-class Cook(FuncCard):
+class CookCard(FuncCard):
 	"""docstring for Cook"""
 	ctype = CardType.COOK
-	
+
 	def __init__(self, arg):
 		super(Cook, self).__init__()
 		self.arg = arg
 		
+
+class Fruit(object):
+	"""docstring for Fruit"""
+	def __init__(self, ftype, count):
+		super(Fruit, self).__init__()
+		self.ftype = ftype
+		self.count = count
