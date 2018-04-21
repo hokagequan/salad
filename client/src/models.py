@@ -52,7 +52,9 @@ class FruitCard(Card):
 class PotCard(FuncCard):
 	"""docstring for POT"""
 	ctype = CardType.POT
+	'''改为增加规则'''
 	increase_ability = ChangeCaculate(CaculateRule.INCREASE)
+	'''改为减少规则'''
 	decrease_ability = ChangeCaculate(CaculateRule.DECREASE)
 
 	def __init__(self, arg):
