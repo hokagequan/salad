@@ -1,9 +1,12 @@
 from enum import Enum
+import core.abilities
+import core.contents
 
 '''[summary]
 卡片类型枚举
 [description]
 '''
+@unique
 class CardType(Enum):
 	NONE = 0
 	FRUIT = 1
@@ -11,6 +14,7 @@ class CardType(Enum):
 	CRUET = 3
 	COOK = 4
 
+@unique
 class FuitType(Enum):
 	"""docstring for FuitType"""
 	CHEESE = 1
@@ -48,6 +52,10 @@ class FruitCard(Card):
 class PotCard(FuncCard):
 	"""docstring for POT"""
 	ctype = CardType.POT
+	'''改为增加规则'''
+	increase_ability = ChangeCaculate(CaculateRule.INCREASE)
+	'''改为减少规则'''
+	decrease_ability = ChangeCaculate(CaculateRule.DECREASE)
 
 	def __init__(self, arg):
 		super(POT, self).__init__()
