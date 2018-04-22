@@ -1,6 +1,6 @@
 from enum import Enum
-from .core import abilities
-from .core import contents
+import core.abilities
+import core.contents
 
 '''[summary]
 卡片类型枚举

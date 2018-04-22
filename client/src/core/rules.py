@@ -1,9 +1,7 @@
-from .. import models
 
-'''[summary]
-所有牌组
-[description]
-'''
-all_cards = [
-	
-]
+class Rule(object):
+	"""docstring for Rule"""
+	def __init__(self, arg):
+		super(Rule, self).__init__()
+		self.arg = arg
+		
