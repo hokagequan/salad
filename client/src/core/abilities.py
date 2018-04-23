@@ -1,5 +1,5 @@
-import rules
-import contents
+#import rules
+#import contents
 
 class Ability(object):
 	"""docstring for Ability"""

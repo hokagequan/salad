@@ -6,7 +6,6 @@ import core.contents
 卡片类型枚举
 [description]
 '''
-@unique
 class CardType(Enum):
 	NONE = 0
 	FRUIT = 1
@@ -14,7 +13,6 @@ class CardType(Enum):
 	CRUET = 3
 	COOK = 4
 
-@unique
 class FuitType(Enum):
 	"""docstring for FuitType"""
 	CHEESE = 1
@@ -42,7 +40,7 @@ class FuncCard(Card):
 
 class FruitCard(Card):
 	"""docstring for Fruit"""
-	ctype = CardType.Fruit
+	ctype = CardType.FRUIT
 
 	def __init__(self, fruits):
 		super(Fruit, self).__init__()
