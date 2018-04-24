@@ -1,4 +1,5 @@
 import models
+import random
 
 from core import rules_contents
 from core.rules import Rule
@@ -16,11 +17,12 @@ class World(object):
 	def prepare(self):
 		# 洗牌
 		self.shuffle_cards()
+		print(self.all_cards)
 
 	def shuffle_cards(self):
-		global_util.random_list(self.all_cards)
-		
-		if self.all_cards[-1] is not models.FruitCard:
+		random.shuffle(self.all_cards)
+
+		if type(self.all_cards[-1]) is not models.FruitCard:
 			self.shuffle_cards()
 
 
