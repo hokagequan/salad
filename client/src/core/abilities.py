@@ -1,5 +1,5 @@
 #import rules
-#import contents
+from core.contents import FruitType
 
 class Ability(object):
 	"""docstring for Ability"""
@@ -22,3 +22,43 @@ class ChangeCaculate(Ability):
 	def do(rule):
 		"""todo"""
 		pass
+
+'''[summary]
+洗牌
+[description]
+'''
+class ShuffleCards(Ability):
+	"""docstring for ShuffleCards"""
+	def __init__(self):
+		super(ShuffleCards, self).__init__()
+
+	def do(rule):
+		#todo
+		pass
+		
+'''[summary]
+取消某种蔬菜
+[description]
+'''
+class DisableFruit(Ability):
+	"""docstring for ClassName"""
+	def __init__(self):
+		super(DisableFruit, self).__init__()
+
+	def do(rule, fruit_type):
+		#todo
+		pass
+		
+'''[summary]
+征集蔬菜
+[description]
+'''
+class CollectFruit(Ability):
+	"""docstring for CollectFruit"""
+	def __init__(self):
+		super(CollectFruit, self).__init__()
+
+	def do(rule, fruit_type):
+		#todo
+		pass
+		

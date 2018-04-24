@@ -1,5 +1,9 @@
+
 from enum import Enum
 from core.abilities import ChangeCaculate
+from core.abilities import ShuffleCards
+from core.abilities import DisableFruit
+from core.abilities import CollectFruit
 from core.contents import CaculateRule
 
 '''[summary]
@@ -12,15 +16,6 @@ class CardType(Enum):
 	POT = 2
 	CRUET = 3
 	COOK = 4
-
-class FuitType(Enum):
-	"""docstring for FuitType"""
-	CHEESE = 1
-	ONION = 2
-	TOMATO = 3
-	CUCUMBER = 4
-	OLIVE = 5
-	PEPPER = 6
 
 
 class Card(object):
@@ -60,6 +55,8 @@ class PotCard(FuncCard):
 class CruetCard(FuncCard):
 	"""docstring for Cruet"""
 	ctype = CardType.CRUET
+	#洗牌
+	shuffle_cards = ShuffleCards()
 
 	def __init__(self):
 		super(CruetCard, self).__init__()
@@ -68,6 +65,10 @@ class CruetCard(FuncCard):
 class CookCard(FuncCard):
 	"""docstring for Cook"""
 	ctype = CardType.COOK
+	#取消某种蔬菜
+	disable_fruit = DisableFruit()
+	#征集蔬菜
+	collect_fruit = CollectFruit()
 
 	def __init__(self):
 		super(CookCard, self).__init__()
