@@ -1,6 +1,6 @@
 from enum import Enum
-import core.abilities
-import core.contents
+from core.abilities import ChangeCaculate
+from core.contents import CaculateRule
 
 '''[summary]
 卡片类型枚举
@@ -27,15 +27,13 @@ class Card(object):
 	"""docstring for card"""
 	ctype = CardType.NONE
 
-	def __init__(self, arg):
-		super(card, self).__init__()
-		self.arg = arg
+	def __init__(self):
+		super(Card, self).__init__()
 		
 class FuncCard(Card):
 	"""docstring for ClassName"""
-	def __init__(self, arg):
-		super(ClassName, self).__init__()
-		self.arg = arg
+	def __init__(self):
+		super(FuncCard, self).__init__()
 		
 
 class FruitCard(Card):
@@ -43,7 +41,7 @@ class FruitCard(Card):
 	ctype = CardType.FRUIT
 
 	def __init__(self, fruits):
-		super(Fruit, self).__init__()
+		super(FruitCard, self).__init__()
 		self.fruits = fruits
 		
 
@@ -55,27 +53,24 @@ class PotCard(FuncCard):
 	'''改为减少规则'''
 	decrease_ability = ChangeCaculate(CaculateRule.DECREASE)
 
-	def __init__(self, arg):
-		super(POT, self).__init__()
-		self.arg = arg
+	def __init__(self):
+		super(PotCard, self).__init__()
 		
 
 class CruetCard(FuncCard):
 	"""docstring for Cruet"""
 	ctype = CardType.CRUET
 
-	def __init__(self, arg):
-		super(Cruet, self).__init__()
-		self.arg = arg
+	def __init__(self):
+		super(CruetCard, self).__init__()
 		
 
 class CookCard(FuncCard):
 	"""docstring for Cook"""
 	ctype = CardType.COOK
 
-	def __init__(self, arg):
-		super(Cook, self).__init__()
-		self.arg = arg
+	def __init__(self):
+		super(CookCard, self).__init__()
 		
 
 class Fruit(object):

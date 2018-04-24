@@ -3,9 +3,8 @@
 
 class Ability(object):
 	"""docstring for Ability"""
-	def __init__(self, arg):
+	def __init__(self):
 		super(Ability, self).__init__()
-		self.arg = arg
 
 	def do(rule):
 		pass
