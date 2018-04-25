@@ -9,20 +9,21 @@ class World(object):
 	"""docstring for World"""
 	rules = Rule()
 	all_cards = rules_contents.all_cards
+	persons = []
 
 	def __init__(self):
 		super(World, self).__init__()
 		self.prepare()
 
-	'''
-	准备
-	'''
 	def prepare(self):
-		# 洗牌
+		# Shuffle
 		self.shuffle_cards()
+		# test
+		persons = [models.Person] * 3
+
 
 	'''[summary]
-	洗牌
+	Shuffle
 	[description]
 	'''
 	def shuffle_cards(self):
@@ -32,7 +33,7 @@ class World(object):
 			self.shuffle_cards()
 
 	'''[summary]
-	开始
+	Start
 	[description]
 	'''
 	def start():

@@ -7,7 +7,7 @@ from core.abilities import CollectFruit
 from core.contents import CaculateRule
 
 '''[summary]
-卡片类型枚举
+Card type
 [description]
 '''
 class CardType(Enum):
@@ -43,9 +43,9 @@ class FruitCard(Card):
 class PotCard(FuncCard):
 	"""docstring for POT"""
 	ctype = CardType.POT
-	'''改为增加规则'''
+	'''Increase'''
 	increase_ability = ChangeCaculate(CaculateRule.INCREASE)
-	'''改为减少规则'''
+	'''Decrease'''
 	decrease_ability = ChangeCaculate(CaculateRule.DECREASE)
 
 	def __init__(self):
@@ -55,7 +55,7 @@ class PotCard(FuncCard):
 class CruetCard(FuncCard):
 	"""docstring for Cruet"""
 	ctype = CardType.CRUET
-	#洗牌
+	#Shuffle
 	shuffle_cards = ShuffleCards()
 
 	def __init__(self):
@@ -65,9 +65,9 @@ class CruetCard(FuncCard):
 class CookCard(FuncCard):
 	"""docstring for Cook"""
 	ctype = CardType.COOK
-	#取消某种蔬菜
+	#Exclude one fruit
 	disable_fruit = DisableFruit()
-	#征集蔬菜
+	#Collect on fruit
 	collect_fruit = CollectFruit()
 
 	def __init__(self):
@@ -80,3 +80,9 @@ class Fruit(object):
 		super(Fruit, self).__init__()
 		self.ftype = ftype
 		self.count = count
+
+class Person(object):
+	"""docstring for Person"""
+	def __init__(self):
+		super(Person, self).__init__()
+		
