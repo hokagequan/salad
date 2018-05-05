@@ -9,6 +9,7 @@ class World(object):
 	"""docstring for World"""
 	rules = Rule()
 	all_cards = rules_contents.all_cards
+	sended_fruit_cards = []
 	persons = []
 	# Current person index
 	cur_p_index = -1
@@ -32,7 +33,13 @@ class World(object):
 		 
 	# 发牌
 	def send_cards(self):
-		
+		# 没人发六张牌
+		for i in range(0, 6):
+			for x in range(0, len(persons)):
+				person = get_next_person()
+				card = all_cards.pop()
+				person.cards.append(card)
+
 
 	'''[summary]
 	Shuffle
@@ -50,6 +57,9 @@ class World(object):
 	'''
 	def start(self):
 		# todo
+		# 先出一张水果牌
+		card = all_cards.pop()
+		sended_fruit_cards.append(card)
 		self.send_cards()
 		pass
 

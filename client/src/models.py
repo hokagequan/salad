@@ -83,6 +83,9 @@ class Fruit(object):
 
 class Person(object):
 	"""docstring for Person"""
+	# 手中的牌
+	cards = []
+
 	def __init__(self):
 		super(Person, self).__init__()
 		
