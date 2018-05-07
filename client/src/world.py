@@ -7,15 +7,15 @@ from utils import global_util
 
 class World(object):
 	"""docstring for World"""
-	rules = Rule()
-	all_cards = rules_contents.all_cards
-	sended_fruit_cards = []
-	persons = []
-	# Current person index
-	cur_p_index = -1
-
 	def __init__(self):
 		super(World, self).__init__()
+		self.rules = Rule()
+		self.all_cards = rules_contents.all_cards
+		self.sended_fruit_cards = []
+		self.persons = []
+		# Current person index
+		self.cur_p_index = -1
+
 		self.prepare()
 		self.start()
 
@@ -23,22 +23,26 @@ class World(object):
 		# Shuffle
 		self.shuffle_cards()
 		# test
-		persons = [models.Person] * 3
-		cur_p_index = random.randint(0, len(persons))
+		self.persons = [models.Person(), models.Person(), models.Person()]
+		self.cur_p_index = random.randint(0, len(self.persons))
 
 	def get_next_person(self):
 		self.cur_p_index += 1
-		self.cur_p_index = cur_p_index if cur_p_index < len(persons) else 0
-		return persons[self.cur_p_index]
+		self.cur_p_index = self.cur_p_index if self.cur_p_index < len(self.persons) else 0
+		return self.persons[self.cur_p_index]
+
+	# 拿牌
+	def get_card(self, person):
+		card = self.all_cards.pop()
+		person.cards.append(card)
 		 
 	# 发牌
 	def send_cards(self):
 		# 没人发六张牌
 		for i in range(0, 6):
-			for x in range(0, len(persons)):
-				person = get_next_person()
-				card = all_cards.pop()
-				person.cards.append(card)
+			for x in range(0, len(self.persons)):
+				person = self.get_next_person()
+				self.get_card(person)
 
 
 	'''[summary]
@@ -58,10 +62,10 @@ class World(object):
 	def start(self):
 		# todo
 		# 先出一张水果牌
-		card = all_cards.pop()
-		sended_fruit_cards.append(card)
-		self.send_cards()
-		pass
+		card = self.all_cards.pop()
+		self.sended_fruit_cards.append(card)
 
+		self.send_cards()
+		print(self.persons)
 
 print(World())

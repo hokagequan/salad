@@ -20,10 +20,9 @@ class CardType(Enum):
 
 class Card(object):
 	"""docstring for card"""
-	ctype = CardType.NONE
-
 	def __init__(self):
 		super(Card, self).__init__()
+		self.ctype = CardType.NONE
 		
 class FuncCard(Card):
 	"""docstring for ClassName"""
@@ -33,45 +32,41 @@ class FuncCard(Card):
 
 class FruitCard(Card):
 	"""docstring for Fruit"""
-	ctype = CardType.FRUIT
-
 	def __init__(self, fruits):
 		super(FruitCard, self).__init__()
+		self.ctype = CardType.FRUIT
 		self.fruits = fruits
 		
 
 class PotCard(FuncCard):
 	"""docstring for POT"""
-	ctype = CardType.POT
-	'''Increase'''
-	increase_ability = ChangeCaculate(CaculateRule.INCREASE)
-	'''Decrease'''
-	decrease_ability = ChangeCaculate(CaculateRule.DECREASE)
-
 	def __init__(self):
 		super(PotCard, self).__init__()
+		self.ctype = CardType.POT
+		'''Increase'''
+		self.increase_ability = ChangeCaculate(CaculateRule.INCREASE)
+		'''Decrease'''
+		self.decrease_ability = ChangeCaculate(CaculateRule.DECREASE)
 		
 
 class CruetCard(FuncCard):
 	"""docstring for Cruet"""
-	ctype = CardType.CRUET
-	#Shuffle
-	shuffle_cards = ShuffleCards()
-
 	def __init__(self):
 		super(CruetCard, self).__init__()
+		self.ctype = CardType.CRUET
+		#Shuffle
+		self.shuffle_cards = ShuffleCards()
 		
 
 class CookCard(FuncCard):
 	"""docstring for Cook"""
-	ctype = CardType.COOK
-	#Exclude one fruit
-	disable_fruit = DisableFruit()
-	#Collect on fruit
-	collect_fruit = CollectFruit()
-
 	def __init__(self):
 		super(CookCard, self).__init__()
+		self.ctype = CardType.COOK
+		#Exclude one fruit
+		self.disable_fruit = DisableFruit()
+		#Collect on fruit
+		self.collect_fruit = CollectFruit()
 		
 
 class Fruit(object):
@@ -83,9 +78,8 @@ class Fruit(object):
 
 class Person(object):
 	"""docstring for Person"""
-	# 手中的牌
-	cards = []
-
 	def __init__(self):
 		super(Person, self).__init__()
+		# 手中的牌
+		self.cards = []
 		
