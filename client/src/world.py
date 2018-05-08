@@ -17,7 +17,6 @@ class World(object):
 		self.cur_p_index = -1
 
 		self.prepare()
-		self.start()
 
 	def prepare(self):
 		# Shuffle
@@ -25,6 +24,12 @@ class World(object):
 		# test
 		self.persons = [models.Person(), models.Person(), models.Person()]
 		self.cur_p_index = random.randint(0, len(self.persons))
+
+		# 先出一张水果牌
+		card = self.all_cards.pop()
+		self.sended_fruit_cards.append(card)
+
+		self.send_cards()
 
 	def get_next_person(self):
 		self.cur_p_index += 1
@@ -38,12 +43,11 @@ class World(object):
 		 
 	# 发牌
 	def send_cards(self):
-		# 没人发六张牌
+		# 每人发六张牌
 		for i in range(0, 6):
 			for x in range(0, len(self.persons)):
 				person = self.get_next_person()
 				self.get_card(person)
-
 
 	'''[summary]
 	Shuffle
@@ -55,17 +59,14 @@ class World(object):
 		if type(self.all_cards[-1]) is not models.FruitCard:
 			self.shuffle_cards()
 
-	'''[summary]
-	Start
-	[description]
-	'''
-	def start(self):
-		# todo
-		# 先出一张水果牌
-		card = self.all_cards.pop()
-		self.sended_fruit_cards.append(card)
 
-		self.send_cards()
-		print(self.persons)
+	def recieve_fruit_card(fruit_card):
+		'''[summary]
+		接受水果卡片，判断是否可以出
+		[description]
+		
+		Arguments:
+			fruit_card {[FruitCard]} -- [水果牌]
+		'''
 
 print(World())
