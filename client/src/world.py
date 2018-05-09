@@ -18,11 +18,17 @@ class World(object):
 
 		self.prepare()
 
+		try:
+			self.start_game().send(None)
+		except StopIteration as e:
+			print(e.value)
+		
+
 	def prepare(self):
 		# Shuffle
 		self.shuffle_cards()
 		# test
-		self.persons = [models.Person(), models.Person(), models.Person()]
+		self.persons = [models.Person(self.recieve_card), models.Person(self.recieve_card), models.Person(self.recieve_card)]
 		self.cur_p_index = random.randint(0, len(self.persons))
 
 		# 先出一张水果牌
@@ -49,18 +55,44 @@ class World(object):
 				person = self.get_next_person()
 				self.get_card(person)
 
-	'''[summary]
-	Shuffle
-	[description]
-	'''
+	async def start_game(self):
+		'''[summary]
+		开始游戏
+		[description]
+		'''
+		await self.start_counting_down().send(None)
+		print("send card to person")
+
+	async def start_counting_down(self):
+		'''[summary]
+		开始出牌倒计时
+		[description]
+		'''
+		print("I am async method")
+
 	def shuffle_cards(self):
+		'''[summary]
+		Shuffle
+		[description]
+		'''
 		random.shuffle(self.all_cards)
 
 		if type(self.all_cards[-1]) is not models.FruitCard:
 			self.shuffle_cards()
 
+	def recieve_card(self, card):
+		'''[summary]
+		接收玩家发送的牌
+		[description]
+		
+		Arguments:
+			card {[Card]} -- [所有类型的牌]
+		'''
+		# todo
+		pass
 
-	def recieve_fruit_card(fruit_card):
+
+	def recieve_fruit_card(self, fruit_card):
 		'''[summary]
 		接受水果卡片，判断是否可以出
 		[description]
@@ -68,5 +100,7 @@ class World(object):
 		Arguments:
 			fruit_card {[FruitCard]} -- [水果牌]
 		'''
+		if fruit_card.ctype is not rules_contents.car:
+			pass
 
 print(World())
