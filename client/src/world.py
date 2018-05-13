@@ -1,9 +1,11 @@
 import models
 import random
+import asyncio
 
 from core import rules_contents
 from core.rules import Rule
 from utils import global_util
+from threading import Thread
 
 class World(object):
 	"""docstring for World"""
@@ -17,11 +19,7 @@ class World(object):
 		self.cur_p_index = -1
 
 		self.prepare()
-
-		try:
-			self.start_game().send(None)
-		except StopIteration as e:
-			print(e.value)
+		self.start_game()
 		
 
 	def prepare(self):
@@ -55,13 +53,28 @@ class World(object):
 				person = self.get_next_person()
 				self.get_card(person)
 
-	async def start_game(self):
+	def start_game(self):
 		'''[summary]
 		开始游戏
 		[description]
 		'''
-		await self.start_counting_down().send(None)
+		self.start_counting_down_thread()
 		print("send card to person")
+
+	def start_loop(self, loop):
+		asyncio.set_event_loop(loop)
+		loop.run_forever()
+
+	def start_counting_down_thread(self):
+		'''[summary]
+		开启倒计时线程
+		[description]
+		'''
+		new_loop = asyncio.new_event_loop()
+		t = Thread(target=self.start_loop, args=(new_loop,))
+		t.start()
+
+		new_loop.call_soon_threadsafe(self.start_counting_down)
 
 	async def start_counting_down(self):
 		'''[summary]
