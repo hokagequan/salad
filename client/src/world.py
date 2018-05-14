@@ -70,18 +70,32 @@ class World(object):
 		开启倒计时线程
 		[description]
 		'''
-		new_loop = asyncio.new_event_loop()
-		t = Thread(target=self.start_loop, args=(new_loop,))
-		t.start()
+		# new_loop = asyncio.new_event_loop()
+		# t = Thread(target=self.start_loop, args=(new_loop,))
+		# t.start()
 
-		new_loop.call_soon_threadsafe(self.start_counting_down)
+		# new_loop.call_soon_threadsafe(self.start_counting_down)
+		new_loop = asyncio.new_event_loop()
+		new_loop.call_soon(self.start_counting_down)
+		new_loop.run_forever()
+		new_loop.close()
 
 	async def start_counting_down(self):
 		'''[summary]
 		开始出牌倒计时
 		[description]
 		'''
-		print("I am async method")
+		count = 60
+		while True:
+			print("Counting down: {}".format(count))
+			await asyncio.sleep(1)
+			count -= 1
+			if count <= 0:
+				# 发牌
+				person = self.persons[self.cur_p_index]
+				self.get_card(person)
+				self.get_next_person()
+				count = 60
 
 	def shuffle_cards(self):
 		'''[summary]
