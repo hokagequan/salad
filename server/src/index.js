@@ -1,10 +1,10 @@
 import express from 'express';
+import controller from './controllers'
 
 let app = express();
 
-app.get('/', function(req, res) {
-	res.send("Hello World!");
-});
+app.use(express.static(__dirname + "/views"));
+app.use('/', controller);
 
 app.listen('3000', function(){
 	console.log("listening on port 3000!");
