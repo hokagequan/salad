@@ -4,7 +4,15 @@
 	<meta charset="UTF-8">
 	<title>Main</title>
 </head>
+<script src="pixi/pixi.min.js"></script>
 <body>
-	<h1>I'm html5</h1>
+	<script type="text/javascript">
+	  let type = "WebGL"
+	  if(!PIXI.utils.isWebGLSupported()){
+        type = "canvas"
+      }
+
+      PIXI.utils.sayHello(type)
+	</script>
 </body>
 </html>
