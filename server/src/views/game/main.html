@@ -12,7 +12,14 @@
         type = "canvas"
     }
 
-    PIXI.utils.sayHello(type)
+    //Aliases
+    let Application = PIXI.Application,
+      Container = PIXI.Container,
+      loader = PIXI.loader,
+      resources = PIXI.loader.resources,
+      TextureCache = PIXI.utils.TextureCache,
+      Sprite = PIXI.Sprite,
+      Rectangle = PIXI.Rectangle;
 
     let app = new PIXI.Application({
       width: 512, 
@@ -23,26 +30,52 @@
     });
     document.body.appendChild(app.view);
 
-    let dungeon, explore, treasure, id;
-    PIXI.loader
+    let dungeon, explore, treasure, door, id;
+    loader
       .add("game/assets/images/treasureHunter.json")
       .load(setup);
 
     function setup() {
-      let dungeon_texture = PIXI.TextureCache["dungeon.png"];
-      dungeon = new PIXI.Sprite(dungeon_texture);
+      let dungeon_texture = TextureCache["dungeon.png"];
+      dungeon = new Sprite(dungeon_texture);
       app.stage.addChild(dungeon);
 
-      id = PIXI.loader.resources["game/assets/images/treasureHunter.json"].textures;
-      explore = new PIXI.Sprite(id["explorer.png"]);
+      id = resources["game/assets/images/treasureHunter.json"].textures;
+      explore = new Sprite(id["explorer.png"]);
       explore.x = 68;
       explore.y = app.stage.height / 2 - explore.height / 2;
       app.stage.addChild(explore);
 
-      treasure = new PIXI.Sprite(id["treasure.png"]);
+      treasure = new Sprite(id["treasure.png"]);
       app.stage.addChild(treasure);
       treasure.x = app.stage.width - treasure.width - 48;
       treasure.y = app.stage.height / 2 - treasure.height / 2;
+
+      door = new Sprite(id["door.png"]);
+      door.position.set(32, 0);
+      app.stage.addChild(door);
+
+      let numberOfBlobs = 6,
+      spacing = 48,
+      xOffset = 150;
+
+      for (let i = 0; i < numberOfBlobs; i++) {
+        let blob = new Sprite(id["blob.png"]);
+        let x = spacing * i + xOffset;
+        let y = random_int(0, app.stage.height - blob.height);
+        blob.position.set(x, y);
+        app.stage.addChild(blob);
+      }
+
+      app.ticker.add(delta => gameloop(delta));
+    }
+
+    function random_int(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function gameloop(delta) {
+      
     }
   </script>
 </body>
