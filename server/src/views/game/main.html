@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Main</title>
+</head>
+<script src="game/pixi/pixi.min.js"></script>
+<body>
+	<script type="text/javascript">
+    let type = "WebGL"
+    if(!PIXI.utils.isWebGLSupported()){
+        type = "canvas"
+    }
+
+    PIXI.utils.sayHello(type)
+
+    let app = new PIXI.Application({
+      width: 512, 
+      height: 512,
+      antialias: true,
+      transparent: false,
+      resolution: 1
+    });
+    document.body.appendChild(app.view);
+
+    let dungeon, explore, treasure, id;
+    PIXI.loader
+      .add("game/assets/images/treasureHunter.json")
+      .load(setup);
+
+    function setup() {
+      let dungeon_texture = PIXI.TextureCache["dungeon.png"];
+      dungeon = new PIXI.Sprite(dungeon_texture);
+      app.stage.addChild(dungeon);
+
+      id = PIXI.loader.resources["game/assets/images/treasureHunter.json"].textures;
+      explore = new PIXI.Sprite(id["explorer.png"]);
+      explore.x = 68;
+      explore.y = app.stage.height / 2 - explore.height / 2;
+      app.stage.addChild(explore);
+
+      treasure = new PIXI.Sprite(id["treasure.png"]);
+      app.stage.addChild(treasure);
+      treasure.x = app.stage.width - treasure.width - 48;
+      treasure.y = app.stage.height / 2 - treasure.height / 2;
+    }
+  </script>
+</body>
+</html>
