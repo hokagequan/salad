@@ -10,8 +10,8 @@ let timer = g.text("60", "36px puzzler", "white");
 timer.visible = true;
 
 function setup() {
-	timer.x = g.stage.width / 2;
-	timer.y = 30
+	timer.x = g.canvas.width / 2;
+	timer.y = 20;
 	// timer.poistion.set(g.stage.width / 2, 30);
 
 	g.state = play;
