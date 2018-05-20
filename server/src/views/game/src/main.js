@@ -9,16 +9,23 @@ g.start();
 let count = 60;
 let second = 60;
 
+// 世界
+let world = new World();
+
 // 出牌倒计时label
 let timer = g.text("60", "36px puzzler", "white");
 timer.visible = false;
+
+// Play btn
+let play_btn = g.button();
 
 function setup() {
 	timer.x = g.canvas.width / 2 - timer.width / 2;
 	timer.y = 20;
 
+	world.setup();
+
 	g.state = play;
-	timer.visible = true;
 }
 
 function load () {
