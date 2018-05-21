@@ -9,6 +9,6 @@ class World {
 
 	// methods
 	setup() {
-
+		
 	}
 }
