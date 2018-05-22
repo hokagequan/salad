@@ -1,5 +1,8 @@
 
-let resources = ["game/assets/images/treasureHunter.json"];
+let resources = [
+	"game/assets/images/treasureHunter.json",
+	"game/assets/images/btns.json"
+	];
 let g = hexi(512, 512, setup, resources, load);
 g.backgroundColor = 0x5a96c6;
 g.scaleToWindow();
@@ -19,19 +22,30 @@ timer.visible = false;
 // 准备页面容器
 let ready_group = g.group();
 
-
 // Play btn
-let play_btn = g.button([
-		"",
-		"",
-		""
-	]);
+// let play_btn = g.button([
+// 		"start_nor.png",
+// 		"start_over.png",
+// 		"start_sel.png"
+// 	]);
+let play_btn;
+
+// let sp = g.sprite(btns["start_over.png"]);
+// sp.vx = 0;
 
 // 准备
 function make_ready_ui() {
-	play_btn.x = g.stage.width / 2 - play_btn.width / 2;
-	play_btn.y = g.stage.height / 2 - play_btn.height / 2;
-	ready_group.addChild(play_btn);
+	play_btn = g.button([
+		"start_nor.png",
+		"start_over.png",
+		"start_sel.png"
+	]);
+	play_btn.x = g.canvas.width / 2 - play_btn.width / 2;
+	play_btn.y = g.canvas.height / 2 - play_btn.height / 2;
+	play_btn.release = () => {
+		console.log("I'm pressed!");
+	};
+	// ready_group.addChild(play_btn);
 }
 
 function setup() {
