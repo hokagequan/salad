@@ -17,7 +17,11 @@ let timer = g.text("60", "36px puzzler", "white");
 timer.visible = false;
 
 // Play btn
-let play_btn = g.button();
+let play_btn = g.button([
+		"",
+		"",
+		""
+	]);
 
 function setup() {
 	timer.x = g.canvas.width / 2 - timer.width / 2;
