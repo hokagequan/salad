@@ -23,11 +23,6 @@ timer.visible = false;
 let ready_group = g.group();
 
 // Play btn
-// let play_btn = g.button([
-// 		"start_nor.png",
-// 		"start_over.png",
-// 		"start_sel.png"
-// 	]);
 let play_btn;
 
 // let sp = g.sprite(btns["start_over.png"]);
@@ -45,7 +40,7 @@ function make_ready_ui() {
 	play_btn.release = () => {
 		console.log("I'm pressed!");
 	};
-	// ready_group.addChild(play_btn);
+	ready_group.addChild(play_btn);
 }
 
 function setup() {
