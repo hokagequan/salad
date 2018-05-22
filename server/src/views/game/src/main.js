@@ -3,7 +3,7 @@ let resources = [
 	"game/assets/images/treasureHunter.json",
 	"game/assets/images/btns.json"
 	];
-let g = hexi(512, 512, setup, resources, load);
+let g = hexi(1024, 512, setup, resources, load);
 g.backgroundColor = 0x5a96c6;
 g.scaleToWindow();
 g.start();
@@ -22,14 +22,20 @@ timer.visible = false;
 // 准备页面容器
 let ready_group = g.group();
 
-// Play btn
-let play_btn;
+let bg, play_btn;
 
 // let sp = g.sprite(btns["start_over.png"]);
 // sp.vx = 0;
 
 // 准备
 function make_ready_ui() {
+	// Background
+	bg = g.sprite("bg.png");
+	bg.width = g.canvas.width;
+	bg.height = g.canvas.height;
+	ready_group.addChild(bg);
+
+	// Play btn
 	play_btn = g.button([
 		"start_nor.png",
 		"start_over.png",
