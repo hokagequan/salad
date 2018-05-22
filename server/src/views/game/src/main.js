@@ -16,6 +16,10 @@ let world = new World();
 let timer = g.text("60", "36px puzzler", "white");
 timer.visible = false;
 
+// 准备页面容器
+let ready_group = g.group();
+
+
 // Play btn
 let play_btn = g.button([
 		"",
@@ -23,7 +27,16 @@ let play_btn = g.button([
 		""
 	]);
 
+// 准备
+function make_ready_ui() {
+	play_btn.x = g.stage.width / 2 - play_btn.width / 2;
+	play_btn.y = g.stage.height / 2 - play_btn.height / 2;
+	ready_group.addChild(play_btn);
+}
+
 function setup() {
+	make_ready_ui()
+
 	timer.x = g.canvas.width / 2 - timer.width / 2;
 	timer.y = 20;
 
