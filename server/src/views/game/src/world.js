@@ -11,4 +11,9 @@ class World {
 	setup() {
 		
 	}
+
+
+	shuffle_cards() {
+		
+	}
 }

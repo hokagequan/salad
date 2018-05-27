@@ -44,27 +44,14 @@ function make_ready_ui() {
 	play_btn.x = g.canvas.width / 2 - play_btn.width / 2;
 	play_btn.y = g.canvas.height / 2 - play_btn.height / 2;
 	play_btn.release = () => {
-		console.log("I'm pressed!");
+		console.log("Start Game!");
+		world.shuffle_cards();
+		g.state = play;
 	};
 	ready_group.addChild(play_btn);
 }
 
-function setup() {
-	make_ready_ui()
-
-	timer.x = g.canvas.width / 2 - timer.width / 2;
-	timer.y = 20;
-
-	world.setup();
-
-	g.state = play;
-}
-
-function load () {
-	g.loadingBar();
-}
-
-function play() {
+function start_counting_down() {
 	// 倒计时
 	second -= 1;
 	if (second <= 0) {
@@ -77,4 +64,21 @@ function play() {
 			count = 60;
 		}
 	}
+}
+
+function setup() {
+	make_ready_ui()
+
+	timer.x = g.canvas.width / 2 - timer.width / 2;
+	timer.y = 20;
+
+	world.setup();
+}
+
+function load() {
+	g.loadingBar();
+}
+
+function play() {
+	
 }
